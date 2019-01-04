@@ -38,7 +38,7 @@ $.ajax({
         }
 
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showNotes");
+        var divContainer = document.getElementById("showCategories");
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
     }
