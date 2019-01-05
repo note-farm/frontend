@@ -45,6 +45,15 @@ axios.get('http://localhost:2672/categories')
 
 axios.get('http://localhost:2672/categories')
     .then(function (categoryList) {
+        $('#delete-category-chooser').empty();
+        $('#delete-category-chooser').append($('<option>').text("Choose a Category"));
+        $.each(categoryList.data, function (i, obj) {
+            $('#delete-category-chooser').append($('<option>').text(obj.title));
+        });
+    })
+
+axios.get('http://localhost:2672/categories')
+    .then(function (categoryList) {
         $('#update-category-chooser').empty();
         $('#update-category-chooser').append($('<option>').text("Choose a Category"));
         $.each(categoryList.data, function (i, obj) {

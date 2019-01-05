@@ -30,8 +30,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     function updateCategory(categoryName, newTitle, newDesc) {
-        axios.delete('http://localhost:2672/categories/update', {
-            data: { title: categoryName }
+        axios.put('http://localhost:2672/categories/update', {
+            data: { title: categoryName, newTitle: newTitle, description: newDesc }
         });
     }
 </script>
@@ -49,7 +49,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Category to Update</label>
-                        <select id="category-chooser" class="form-control" name="category">
+                        <select id="update-category-chooser" class="form-control" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
@@ -62,13 +62,12 @@
                         <input type="text" class="form-control" name="newDesc" placeholder="Enter a new description for your category (not required)">
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <input type="submit" class="btn btn-danger" value="Submit" onclick="updateCategory(document.getElementById('category-chooser').value, document.getElementById('newTitle'), document.getElementById('newDesc'))">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Submit" onclick="updateCategory(document.getElementById('update-category-chooser').value, document.getElementById('newTitle'), document.getElementById('newDesc'))">
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </form>
 
@@ -95,13 +94,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Category to Delete</label>
-                        <select id="update-category-chooser" class="form-control" name="category">
+                        <select id="delete-category-chooser" class="form-control" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteCategory(document.getElementById('update-category-chooser').value)">
+                        <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteCategory(document.getElementById('delete-category-chooser').value)">
                     </div>
                 </div>
             </div>
@@ -119,6 +118,9 @@
         </button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCategory">
             Delete a Category
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateCategory">
+            Update a Category
         </button>
     </div>
 </div>
