@@ -18,10 +18,10 @@ axios.get('http://localhost:2672/categories')
 
         // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
-        var tr = table.insertRow(-1);                   // TABLE ROW.
+        var tr = table.insertRow(-1); // TABLE ROW.
 
         for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
+            var th = document.createElement("th"); // TABLE HEADER.
             th.innerHTML = col[i];
             tr.appendChild(th);
         }
@@ -45,9 +45,9 @@ axios.get('http://localhost:2672/categories')
 
 axios.get('http://localhost:2672/categories')
     .then(function (categoryList) {
-        $('#category-chooser').empty();
-        $('#category-chooser').append($('<option>').text("Choose a Category"));
+        $('#update-category-chooser').empty();
+        $('#update-category-chooser').append($('<option>').text("Choose a Category"));
         $.each(categoryList.data, function (i, obj) {
-            $('#category-chooser').append($('<option>').text(obj.title));
+            $('#update-category-chooser').append($('<option>').text(obj.title));
         });
     })

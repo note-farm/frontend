@@ -29,6 +29,51 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    function updateCategory(categoryName, newTitle, newDesc) {
+        axios.delete('http://localhost:2672/categories/update', {
+            data: { title: categoryName }
+        });
+    }
+</script>
+
+<form>
+    <div class="modal fade" id="updateCategory" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update a Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Choose a Category to Update</label>
+                        <select id="category-chooser" class="form-control" name="category">
+                            <option selected="selected">blank</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="newTitle" class="form-control" placeholder="Enter a new name for your category (not required)">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" name="newDesc" placeholder="Enter a new description for your category (not required)">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <input type="submit" class="btn btn-danger" value="Submit" onclick="updateCategory(document.getElementById('category-chooser').value, document.getElementById('newTitle'), document.getElementById('newDesc'))">
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
     function deleteCategory(categoryName) {
         console.log('Category name is ' + categoryName);
         axios.delete('http://localhost:2672/categories/delete', {
@@ -50,13 +95,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Category to Delete</label>
-                        <select id="category-chooser" class="form-control" name="category">
+                        <select id="update-category-chooser" class="form-control" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteCategory(document.getElementById('category-chooser').value)">
+                        <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteCategory(document.getElementById('update-category-chooser').value)">
                     </div>
                 </div>
             </div>
