@@ -6,6 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 import $ from 'jquery'
+import 'bootstrap'
 import 'propellerkit'
 import Navigo from 'navigo'
 
