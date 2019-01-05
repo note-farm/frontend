@@ -43,10 +43,11 @@ axios.get('http://localhost:2672/notes')
         divContainer.appendChild(table);
     });
 
-$.getJSON("http://localhost:2672/categories", function (json) {
-    $('#category-chooser').empty();
-    $('#category-chooser').append($('<option>').text("Choose a Category"));
-    $.each(json, function (i, obj) {
-        $('#category-chooser').append($('<option>').text(obj.title));
-    });
-});
+axios.get('http://localhost:2672/categories')
+    .then(function (categoryList) {
+        $('#category-chooser').empty();
+        $('#category-chooser').append($('<option>').text("Choose a Category"));
+        $.each(categoryList.data, function (i, obj) {
+            $('#category-chooser').append($('<option>').text(obj.title));
+        });
+    })
