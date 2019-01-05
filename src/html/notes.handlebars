@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Test POST Modal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create a Note</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -32,6 +32,33 @@
         </div>
     </div>
 </form>
+
+<form method="DELETE" action="http://localhost:2672/notes">
+    <div class="modal fade" id="deleteNotesModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete a Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Note to Delete</label>
+                        <select id="note-chooser" class="form-control" name="title">
+                            <option selected="selected">blank</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <div class="body">
     <div class="container" style="padding-top:1rem">
         <h1>NoteFarm</h1>
@@ -39,6 +66,9 @@
         <p id="showNotes"></p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNotesModal">
             Create a New Note
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteNotesModal">
+            Delete a Note
         </button>
     </div>
 </div>

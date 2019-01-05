@@ -7,6 +7,6 @@ import './lib/notesPage'
 
 export default () => {
     $('#app').html(compile(navbar + template)({
-
+        
     }))
 }

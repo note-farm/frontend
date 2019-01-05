@@ -51,3 +51,11 @@ $.getJSON("http://localhost:2672/categories", function (json) {
         $('#category-chooser').append($('<option>').text(obj.title));
     });
 });
+
+$.getJSON("http://localhost:2672/notes", function (json) {
+    $('#note-chooser').empty();
+    $('#note-chooser').append($('<option>').text("Choose a Note"));
+    $.each(json, function (i, obj) {
+        $('#note-chooser').append($('<option>').text(obj.title));
+    });
+});
