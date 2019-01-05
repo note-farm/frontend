@@ -8,19 +8,11 @@ const {
     DllReferencePlugin,
     ContextReplacementPlugin,
     DefinePlugin,
-    BannerPlugin,
     optimize: {
         CommonsChunkPlugin,
         UglifyJsPlugin,
     }
 } = require('webpack')
-
-const banner = `
-file: [file]
-author: rkgrep
-source: https://github.com/rkgrep/spa-tutorial
-license: MIT
-`
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -143,7 +135,7 @@ const config = {
             Popper: 'popper.js',
         }),
         new HtmlWebpackPlugin({
-            title: 'SPA tutorial',
+            title: 'NoteFarm Frontend',
             template: resolve(__dirname, '..', 'src', 'html', 'index.ejs'),
             chunks: ['app', 'vendor', 'templating'],
         }),
@@ -196,10 +188,7 @@ if (isProd) {
         }),
         new UglifyJsPlugin({
             sourceMap: true,
-        }),
-        new BannerPlugin({
-            banner,
-        }),
+        })
     ]
 }
 
