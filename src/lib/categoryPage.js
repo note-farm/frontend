@@ -1,12 +1,12 @@
-$.ajax({
-    url: 'http://localhost:2672/categories',
-    type: 'GET',
-    success: function (myCategories) {
+import axios from 'axios'
+
+axios.get('http://localhost:2672/notes')
+    .then(function (myCategories) {
         console.log(myCategories)
         // EXTRACT VALUE FOR HTML HEADER. 
         var col = [];
-        for (var i = 0; i < myCategories.length; i++) {
-            for (var key in myCategories[i]) {
+        for (var i = 0; i < myCategories.data.length; i++) {
+            for (var key in myCategories.data[i]) {
                 if (col.indexOf(key) === -1) {
                     col.push(key);
                 }
@@ -27,13 +27,13 @@ $.ajax({
         }
 
         // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < myCategories.length; i++) {
+        for (var i = 0; i < myCategories.data.length; i++) {
 
             tr = table.insertRow(-1);
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = myCategories[i][col[j]];
+                tabCell.innerHTML = myCategories.data[i][col[j]];
             }
         }
 
@@ -41,8 +41,7 @@ $.ajax({
         var divContainer = document.getElementById("showCategories");
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
-    }
-});
+    });
 
 $.getJSON("http://localhost:2672/categories", function (json) {
     $('#category-chooser').empty();

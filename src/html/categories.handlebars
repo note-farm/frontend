@@ -27,7 +27,15 @@
     </div>
 </form>
 
-<form method="DELETE" action="http://localhost:2672/categories">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function deleteCategory(categoryName) {
+        console.log('Category name is ' + categoryName);
+        axios.delete('http://localhost:2672/categories/delete', { data: { categoryId: categoryName } });
+    }
+</script>
+
+<form>
     <div class="modal fade" id="deleteCategory" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -46,7 +54,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <input type="submit" value="Submit" onclick="deleteCategory(document.getElementById('category-chooser').value)">
                     </div>
                 </div>
             </div>
