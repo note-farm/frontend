@@ -31,7 +31,9 @@
 <script>
     function deleteCategory(categoryName) {
         console.log('Category name is ' + categoryName);
-        axios.delete('http://localhost:2672/categories/delete', { data: { categoryId: categoryName } });
+        axios.delete('http://localhost:2672/categories/delete', {
+            data: { title: categoryName }
+        });
     }
 </script>
 

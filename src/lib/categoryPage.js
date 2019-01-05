@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.get('http://localhost:2672/notes')
+axios.get('http://localhost:2672/categories')
     .then(function (myCategories) {
         console.log(myCategories)
         // EXTRACT VALUE FOR HTML HEADER. 

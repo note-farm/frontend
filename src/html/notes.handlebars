@@ -33,7 +33,15 @@
     </div>
 </form>
 
-<form method="DELETE" action="http://localhost:2672/notes">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function deleteNote(noteName) {
+        console.log('Note name is ' + noteName);
+        axios.delete('http://localhost:2672/notes/delete', { data: { title: noteName } });
+    }
+</script>
+
+<form>
     <div class="modal fade" id="deleteNotesModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -53,7 +61,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteNote(document.getElementById('note-chooser').value)">
                 </div>
             </div>
         </div>
