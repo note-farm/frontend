@@ -20,18 +20,3 @@ router
     .on('/notes', NotesPage)
     .on('/categories', CategoriesPage)
     .resolve()
-
-$(window).on('load', () => {
-
-    $(document).on('click', '[data-path]', (e) => {
-        e.preventDefault()
-
-        const href = $(e.target).attr('href')
-
-        if (process.env.DEBUG) {
-            console.log(`Navigating to ${href}`)
-        }
-
-        router.navigate(href)
-    })
-})
