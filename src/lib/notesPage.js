@@ -2,7 +2,6 @@ import axios from 'axios'
 
 axios.get('http://localhost:2672/notes')
     .then(function (myNotes) {
-        console.log(myNotes.data);
         var col = [];
         for (var i = 0; i < myNotes.data.length; i++) {
             for (var key in myNotes.data[i]) {

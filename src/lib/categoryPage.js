@@ -2,7 +2,6 @@ import axios from 'axios'
 
 axios.get('http://localhost:2672/categories')
     .then(function (myCategories) {
-        console.log(myCategories)
         // EXTRACT VALUE FOR HTML HEADER. 
         var col = [];
         for (var i = 0; i < myCategories.data.length; i++) {
