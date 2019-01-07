@@ -48,6 +48,7 @@ const config = {
     entry: {
         vendor,
         app: resolve(srcDir, 'index.js'),
+        polyfill: 'babel-polyfill',
     },
 
     output: {

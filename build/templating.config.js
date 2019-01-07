@@ -28,7 +28,6 @@ const config = {
             'remarkable',
             'highlight.js',
         ],
-        polyfill: 'babel-polyfill',
     },
 
     output: {
