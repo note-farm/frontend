@@ -1,46 +1,44 @@
-import axios from 'axios'
+const axios = {
+    get: (s) => Promise.resolve({
+        data: [{
+            "_id": "5c3296f4c7728833bf7cf334",
+            "title": "Update styling",
+            "content": "Don't forget to update the styling on the website",
+            "category": "Cat2",
+            "createdAt": "2019-01-07T00:01:56.375Z",
+            "updatedAt": "2019-01-07T00:01:56.375Z",
+            "__v": 0
+        }]
+    })
+};
 
-axios.get('http://localhost:2672/categories')
-    .then(function (myCategories) {
-        // EXTRACT VALUE FOR HTML HEADER. 
-        var col = [];
-        for (var i = 0; i < myCategories.data.length; i++) {
-            for (var key in myCategories.data[i]) {
-                if (col.indexOf(key) === -1 && (key === 'title' || key === 'description')) {
-                    col.push(key);
-                }
-            }
-        }
+// ------------------------------------------
 
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
+window.addEventListener('load', async () => {
+    const res = await axios.get('http://localhost:2672/categories');
+    const div = document.getElementById("showCategories");
 
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+    div.innerHTML = createTableWithData(res.data);
+});
 
-        var tr = table.insertRow(-1); // TABLE ROW.
+function createTableWithData(data) {
+    // Create a dictionary of keys and names for the header cells.
+    const columns = {
+        title: 'Title',
+        content: 'Content',
+        category: 'Category'
+    };
+    // Create header row by mapping columns into HTML strings.
+    const headerCells = Object.values(columns).map(name => `<th>${name}</th>`);
+    const headerRow = `<tr>${headerCells.join('')}</tr>`;
+    // Create data rows by doing the same for each object in the data.
+    const dataRows = data.map(obj =>
+        Object.keys(columns).map(key => `<td>${obj[key]}</td>`).join('')
+    );
 
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th"); // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < myCategories.data.length; i++) {
-
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = myCategories.data[i][col[j]];
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showCategories");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    });
+    // Finally we set the header and data rows to be the innerHTML of the table.
+    return `<table>${headerRow + dataRows.join('')}</table>`;
+}
 
 axios.get('http://localhost:2672/categories')
     .then(function (categoryList) {

@@ -29,6 +29,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.0.0-beta",
     "handlebars": "^4.0.10",
     "highlight.js": "^9.12.0",
@@ -37,7 +39,6 @@
     "moment": "^2.18.1",
     "navigo": "^5.3.1",
     "popper.js": "^1.12.3",
-    "remarkable": "^1.7.1",
-    "axios": "^0.18.0"
+    "remarkable": "^1.7.1"
   }
 }
