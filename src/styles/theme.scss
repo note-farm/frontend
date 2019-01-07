@@ -1,7 +1,11 @@
-@import "~bootstrap/scss/bootstrap.scss";
+@import "bootstrap-material-design";
 
 $text-color: #111111;
 
 #app {
     color: $text-color;
+}
+
+th {
+    text-transform: capitalize;
 }

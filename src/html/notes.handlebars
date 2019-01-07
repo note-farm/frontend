@@ -51,14 +51,14 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <select id="category-chooser" class="form-control" name="category">
+                        <select id="category-chooser" class="custom-select" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Update" onclick="createNote(document.getElementById('note-title').value, document.getElementById('note-content').value, document.getElementById('category-chooser').value)">
+                    <input type="submit" class="btn btn-outline-primary" value="Update" onclick="createNote(document.getElementById('note-title').value, document.getElementById('note-content').value, document.getElementById('category-chooser').value)">
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Note to Update</label>
-                        <select id="update-note-chooser" class="form-control" name="note">
+                        <select id="update-note-chooser" class="custom-select" name="note">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
@@ -119,14 +119,14 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <select id="update-category-chooser" class="form-control" name="note">
+                        <select id="update-category-chooser" class="custom-select" name="note">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Update" onclick="updateNote(document.getElementById('update-note-chooser').value, document.getElementById('newTitle').value, document.getElementById('newContent').value, document.getElementById('update-category-chooser').value)">
+                    <input type="submit" class="btn btn-outline-primary" value="Update" onclick="updateNote(document.getElementById('update-note-chooser').value, document.getElementById('newTitle').value, document.getElementById('newContent').value, document.getElementById('update-category-chooser').value)">
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Note to Delete</label>
-                        <select id="note-chooser" class="form-control" name="title">
+                        <select id="note-chooser" class="custom-select" name="title">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
@@ -189,13 +189,13 @@
         <h1>NoteFarm</h1>
         <p>Welcome! Here's a list of your current notes</p>
         <table class="table" id="showNotes"></table>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNotesModal">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addNotesModal">
             Create a New Note
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteNotesModal">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteNotesModal">
             Delete a Note
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateNoteModal">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#updateNoteModal">
             Update a Note
         </button>
     </div>

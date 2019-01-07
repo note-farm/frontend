@@ -1,4 +1,3 @@
-import './styles/main.css'
 import './styles/theme.scss'
 
 if (process.env.NODE_ENV === 'production') {

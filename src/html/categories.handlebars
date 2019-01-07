@@ -51,7 +51,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Update" onclick="createCategory(document.getElementById('title').value, document.getElementById('description').value)">
+                    <input type="submit" class="btn btn-outline-primary" value="Update" onclick="createCategory(document.getElementById('title').value, document.getElementById('description').value)">
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Category to Update</label>
-                        <select id="update-category-chooser" class="form-control" name="category">
+                        <select id="update-category-chooser" class="custom-select" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Update" onclick="updateCategory(document.getElementById('update-category-chooser').value, document.getElementById('newTitle').value, document.getElementById('newDesc').value)">
+                    <input type="submit" class="btn btn-outline-primary" value="Update" onclick="updateCategory(document.getElementById('update-category-chooser').value, document.getElementById('newTitle').value, document.getElementById('newDesc').value)">
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Choose a Category to Delete</label>
-                        <select id="delete-category-chooser" class="form-control" name="category">
+                        <select id="delete-category-chooser" class="custom-select" name="category">
                             <option selected="selected">blank</option>
                         </select>
                     </div>
@@ -175,13 +175,13 @@
         <h1>NoteFarm</h1>
         <p>Welcome! Here's a list of your current categories</p>
         <table class="table" id="showCategories"></table>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewCategory">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#createNewCategory">
             Create a New Category
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCategory">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteCategory">
             Delete a Category
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateCategory">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#updateCategory">
             Update a Category
         </button>
     </div>
