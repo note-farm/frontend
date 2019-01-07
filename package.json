@@ -1,16 +1,13 @@
 {
-  "name": "spa-tutorial",
+  "name": "note-farm-frontend",
   "version": "1.0.0",
   "description": "",
-  "proxy": "http://localhost:2672",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --config build/base.config.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --config build/webpack.config.js --hide-modules --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Roman Kinyakin <1@grep.su>",
-  "license": "UNLICENSED",
   "devDependencies": {
     "assets-webpack-plugin": "^3.5.1",
     "babel-core": "^6.26.0",

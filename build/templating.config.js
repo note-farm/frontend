@@ -1,9 +1,15 @@
 // Define this constant for easier usage
 const isProd = process.env.NODE_ENV === 'production'
 
-const { resolve } = require('path')
-const { DllPlugin } = require('webpack')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const {
+    resolve
+} = require('path')
+const {
+    DllPlugin
+} = require('webpack')
+const {
+    BundleAnalyzerPlugin
+} = require('webpack-bundle-analyzer')
 const AssetsPlugin = require('./AssetsPlugin')
 
 const config = {
@@ -25,7 +31,7 @@ const config = {
     },
 
     output: {
-		path: resolve(__dirname, '..', 'dist'),
+        path: resolve(__dirname, '..', 'dist'),
         filename: '[name].[hash].dll.js',
         library: '[name]_[hash]',
     },
@@ -41,19 +47,17 @@ const config = {
     },
 
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            },
-        ],
+        rules: [{
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }, ],
     },
 
     plugins: [
-		new DllPlugin({
-			path: resolve(__dirname, '..', 'dist', '[name]-manifest.json'),
-			name: '[name]_[hash]',
+        new DllPlugin({
+            path: resolve(__dirname, '..', 'dist', '[name]-manifest.json'),
+            name: '[name]_[hash]',
         }),
         AssetsPlugin,
         new BundleAnalyzerPlugin({

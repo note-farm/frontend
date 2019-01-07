@@ -16,10 +16,10 @@ axios.get('http://localhost:2672/notes')
 
         // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
-        var tr = table.insertRow(-1);                   // TABLE ROW.
+        var tr = table.insertRow(-1); // TABLE ROW.
 
         for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
+            var th = document.createElement("th"); // TABLE HEADER.
             th.innerHTML = col[i];
             tr.appendChild(th);
         }
@@ -56,5 +56,23 @@ axios.get('http://localhost:2672/notes')
         $('#note-chooser').append($('<option>').text("Choose a Note"));
         $.each(noteList.data, function (i, obj) {
             $('#note-chooser').append($('<option>').text(obj.title));
+        });
+    })
+
+axios.get('http://localhost:2672/notes')
+    .then(function (noteList) {
+        $('#update-note-chooser').empty();
+        $('#update-note-chooser').append($('<option>').text("Choose a Note"));
+        $.each(noteList.data, function (i, obj) {
+            $('#update-note-chooser').append($('<option>').text(obj.title));
+        });
+    })
+
+axios.get('http://localhost:2672/categories')
+    .then(function (noteList) {
+        $('#update-category-chooser').empty();
+        $('#update-category-chooser').append($('<option>').text("Choose a Category"));
+        $.each(noteList.data, function (i, obj) {
+            $('#update-category-chooser').append($('<option>').text(obj.title));
         });
     })
