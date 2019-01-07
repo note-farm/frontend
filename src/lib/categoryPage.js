@@ -6,7 +6,7 @@ axios.get('http://localhost:2672/categories')
         var col = [];
         for (var i = 0; i < myCategories.data.length; i++) {
             for (var key in myCategories.data[i]) {
-                if (col.indexOf(key) === -1) {
+                if (col.indexOf(key) === -1 && (key === 'title' || key === 'description')) {
                     col.push(key);
                 }
             }
