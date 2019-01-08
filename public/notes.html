@@ -1,0 +1,233 @@
+<html>
+
+<head>
+    <script src="./js/notePage.js"></script>
+    <link rel="stylesheet" href="./css/theme.css">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Note Farm</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notes">Notes<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Categories<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</head>
+
+<body>
+    <script>
+        src = "https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity = "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin = "anonymous"
+    </script>
+
+    <script>
+        function createNote(title, content, category) {
+            let url = 'http://localhost:2672/api/notes'
+            let info = {
+                title: title,
+                content: content,
+                category: category
+            }
+            console.log(info)
+            var json = JSON.stringify(info);
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = function () {
+                var users = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    console.table(users);
+                } else {
+                    console.error(users);
+                }
+            }
+            xhr.send(json);
+        }
+    </script>
+
+    <form>
+        <div class="modal fade" id="addNotesModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create a Note</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="note-title" name="title" class="form-control" placeholder="Enter a name for your note">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <input type="text" id="note-content" class="form-control" name="content" placeholder="Enter the content for your note">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="category-chooser" class="custom-select" name="category">
+                                <option selected="selected">blank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-outline-primary" value="Update" onclick="createNote(document.getElementById('note-title').value, document.getElementById('note-content').value, document.getElementById('category-chooser').value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function updateNote(title, newTitle, newContent, newCategory) {
+            let url = 'http://localhost:2672/api/notes/update'
+            let info = {
+                title: title,
+                newTitle: newTitle,
+                content: newContent,
+                category: newCategory
+            }
+            console.log(info)
+            var json = JSON.stringify(info);
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = function () {
+                var users = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    console.table(users);
+                } else {
+                    console.error(users);
+                }
+            }
+            xhr.send(json);
+        }
+    </script>
+
+    <form>
+        <div class="modal fade" id="updateNoteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update a Note</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Choose a Note to Update</label>
+                            <select id="update-note-chooser" class="custom-select" name="note">
+                                <option selected="selected">blank</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="newTitle" name="newTitle" class="form-control" placeholder="Enter a new name for your note">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <input type="text" class="form-control" id="newContent" name="newContent" placeholder="Enter the new content for your note">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="update-category-chooser" class="custom-select" name="note">
+                                <option selected="selected">blank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-outline-primary" value="Update" onclick="updateNote(document.getElementById('update-note-chooser').value, document.getElementById('newTitle').value, document.getElementById('newContent').value, document.getElementById('update-category-chooser').value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function deleteNote(noteName) {
+            let url = 'http://localhost:2672/api/notes/delete'
+            let info = {
+                title: noteName
+            }
+            console.log(info)
+            var json = JSON.stringify(info);
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = function () {
+                var users = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    console.table(users);
+                } else {
+                    console.error(users);
+                }
+            }
+            xhr.send(json);
+        }
+    </script>
+
+    <form>
+        <div class="modal fade" id="deleteNotesModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete a Note</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Note to Delete</label>
+                            <select id="note-chooser" class="custom-select" name="title">
+                                <option selected="selected">blank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-danger" value="Submit" onclick="deleteNote(document.getElementById('note-chooser').value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="body">
+        <div class="container" style="padding-top:1rem">
+            <h1>NoteFarm</h1>
+            <p>Welcome! Here's a list of your current notes</p>
+            <table class="table" id="showNotes"></table>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addNotesModal">
+                Create a New Note
+            </button>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteNotesModal">
+                Delete a Note
+            </button>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#updateNoteModal">
+                Update a Note
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

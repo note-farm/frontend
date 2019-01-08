@@ -1,44 +1,21 @@
 {
-  "name": "note-farm-frontend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack-dev-server --hot --inline --config build/base.config.js",
-    "build": "rimraf ./dist && NODE_ENV=production webpack --config build/webpack.config.js --hide-modules --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "assets-webpack-plugin": "^3.5.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "css-loader": "^0.28.5",
-    "dotenv": "^4.0.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.2",
-    "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.5.3",
-    "raw-loader": "^0.5.1",
-    "rimraf": "^2.6.1",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.5.5",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.7.1"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "babel-polyfill": "^6.26.0",
-    "bootstrap": "^4.0.0-beta",
-    "handlebars": "^4.0.10",
-    "highlight.js": "^9.12.0",
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.4",
-    "moment": "^2.18.1",
-    "navigo": "^5.3.1",
-    "popper.js": "^1.12.3",
-    "remarkable": "^1.7.1"
-  }
+    "name": "note-farm-frontent",
+    "version": "1.0.0",
+    "description": "Never miss a thing in Life. Take notes quickly. Organize and keep track of all your notes.",
+    "main": "server.js",
+    "keywords": [
+        "Express",
+        "RestAPI",
+        "MongoDB",
+        "Mongoose",
+        "Notes",
+        "Bootstrap"
+    ],
+    "author": "callicoder",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "mongoose": "^5.2.8"
+    }
 }

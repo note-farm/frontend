@@ -1,3 +1,2 @@
-/dist/*
-/node_modules
-webpack-assets.json
+node_modules
+npm-debug
