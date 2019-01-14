@@ -1,10 +1,12 @@
-import axios from 'axios'
-
-axios.get('http://localhost:2672/api/notes')
-    .then(function (myNotes) {
+$.ajax({
+    url: 'http://localhost:2672/api/notes',
+    type: 'GET',
+    success: function (myNotes) {
+        console.log(myNotes)
+        // EXTRACT VALUE FOR HTML HEADER. 
         var col = [];
-        for (var i = 0; i < myNotes.data.length; i++) {
-            for (var key in myNotes.data[i]) {
+        for (var i = 0; i < myNotes.length; i++) {
+            for (var key in myNotes[i]) {
                 if (col.indexOf(key) === -1 && (key === 'title' || key === 'content' || key == 'category')) {
                     col.push(key);
                 }
@@ -25,13 +27,13 @@ axios.get('http://localhost:2672/api/notes')
         }
 
         // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < myNotes.data.length; i++) {
+        for (var i = 0; i < myNotes.length; i++) {
 
             tr = table.insertRow(-1);
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = myNotes.data[i][col[j]];
+                tabCell.innerHTML = myNotes[i][col[j]];
             }
         }
 
@@ -39,9 +41,10 @@ axios.get('http://localhost:2672/api/notes')
         var divContainer = document.getElementById("showNotes");
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
-    })
+    }
+});
 
-axios.get('http://localhost:2672/api/categories')
+axios.get('http://localhost:2609/api/categories')
     .then(function (categoryList) {
         $('#category-chooser').empty();
         $('#category-chooser').append($('<option>').text("Choose a Category"));
@@ -50,7 +53,7 @@ axios.get('http://localhost:2672/api/categories')
         });
     })
 
-axios.get('http://localhost:2672/api/notes')
+axios.get('http://localhost:2609/api/notes')
     .then(function (noteList) {
         $('#note-chooser').empty();
         $('#note-chooser').append($('<option>').text("Choose a Note"));
@@ -59,7 +62,7 @@ axios.get('http://localhost:2672/api/notes')
         });
     })
 
-axios.get('http://localhost:2672/api/notes')
+axios.get('http://localhost:2609/api/notes')
     .then(function (noteList) {
         $('#update-note-chooser').empty();
         $('#update-note-chooser').append($('<option>').text("Choose a Note"));
@@ -68,7 +71,7 @@ axios.get('http://localhost:2672/api/notes')
         });
     })
 
-axios.get('http://localhost:2672/api/categories')
+axios.get('http://localhost:2609/api/categories')
     .then(function (noteList) {
         $('#update-category-chooser').empty();
         $('#update-category-chooser').append($('<option>').text("Choose a Category"));

@@ -1,6 +1,12 @@
 <html>
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
     <script src="./js/notePage.js"></script>
     <link rel="stylesheet" href="./css/theme.css">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +40,7 @@
 
     <script>
         function createNote(title, content, category) {
-            let url = 'http://localhost:2672/api/notes'
+            let url = 'http://localhost:2609/api/notes'
             let info = {
                 title: title,
                 content: content,
@@ -95,7 +101,7 @@
 
     <script>
         function updateNote(title, newTitle, newContent, newCategory) {
-            let url = 'http://localhost:2672/api/notes/update'
+            let url = 'http://localhost:2609/api/notes/update'
             let info = {
                 title: title,
                 newTitle: newTitle,
@@ -163,7 +169,7 @@
 
     <script>
         function deleteNote(noteName) {
-            let url = 'http://localhost:2672/api/notes/delete'
+            let url = 'http://localhost:2609/api/notes/delete'
             let info = {
                 title: noteName
             }

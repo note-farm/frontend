@@ -21,11 +21,7 @@ exports.create = (req, res) => {
             res.send(data);
         }).catch(err => {
             console.log(err)
-            res.status(500).send({
-                message: err.message || "An error occurred while creating the category."
-            });
         });
-    res.redirect('http://localhost:2672/categories')
 };
 
 // Retrieve and return all categories from the database.
@@ -127,3 +123,5 @@ exports.delete = (req, res) => {
             });
         });
 };
+
+module.exports = exports;

@@ -29,7 +29,6 @@ exports.create = (req, res) => {
                 message: err.message || "Some error occurred while creating the Note."
             });
         });
-    res.redirect('http://localhost:2672/notes')
 };
 
 // Retrieve and return all notes from the database.
@@ -124,3 +123,5 @@ exports.findNotes = (req, res) => {
             });
         });
 };
+
+module.exports = exports;

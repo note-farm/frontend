@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path')
 
 // create express app
 const app = express();
@@ -37,14 +38,26 @@ var allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain);
 
-// import frontend
-app.use(express.static('public'))
-
 // import notes api
-require('./server//app/routes/note.routes.js')(app);
+require('./server/app/routes/note.routes.js')(app);
 
 // import category api
 require('./server/app/routes/category.routes.js')(app);
+
+// import frontend
+app.get('/', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'index.html'));
+});
+
+app.get('/notes', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'notes.html'));
+});
+
+app.get('/categories', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'categories.html'));
+});
+
+app.use(express.static('public'))
 
 // listen for requests
 app.listen(2672, () => {

@@ -1,6 +1,6 @@
-import axios from 'axios'
+const axios = require('../../node_modules/axios/dist/axios')
 
-axios.get('http://localhost:2672/api/categories')
+axios.get('http://localhost:2609/api/categories')
     .then(function (myCategories) {
         // EXTRACT VALUE FOR HTML HEADER. 
         var col = [];
@@ -42,7 +42,7 @@ axios.get('http://localhost:2672/api/categories')
         divContainer.appendChild(table);
     });
 
-axios.get('http://localhost:2672/api/categories')
+axios.get('http://localhost:2609/api/categories')
     .then(function (categoryList) {
         $('#delete-category-chooser').empty();
         $('#delete-category-chooser').append($('<option>').text("Choose a Category"));
@@ -51,7 +51,7 @@ axios.get('http://localhost:2672/api/categories')
         });
     })
 
-axios.get('http://localhost:2672/api/categories')
+axios.get('http://localhost:2609/api/categories')
     .then(function (categoryList) {
         $('#update-category-chooser').empty();
         $('#update-category-chooser').append($('<option>').text("Choose a Category"));
