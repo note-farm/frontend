@@ -113,7 +113,7 @@ exports.delete = (req, res) => {
 
 // Find all notes under a specific category
 exports.findNotes = (req, res) => {
-    Note.findById(req.params.category)
+    Note.findAll(req.params.category)
         .then(notes => {
             console.log(notes);
             res.send(notes);

@@ -12,4 +12,7 @@ module.exports = (app) => {
 
     // Delete a Note with noteTitle
     app.delete('/api/notes/delete', notes.delete);
+
+    // Find all notes under a cateogry
+    app.get('/api/notes/findBy', notes.findNotes);
 }
