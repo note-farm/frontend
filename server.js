@@ -44,22 +44,33 @@ require('./server/app/routes/note.routes.js')(app);
 // import category api
 require('./server/app/routes/category.routes.js')(app);
 
-// import frontend
-app.get('/', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+// home page 
+app.get('/', function(req, res) {
+    res.render('pages/home');
 });
 
-app.get('/notes', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'notes.html'));
+// notes page 
+app.get('/notes', function(req, res) {
+    res.render('pages/notes');
 });
 
-app.get('/categories', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'categories.html'));
+// categories page 
+app.get('/categories', function(req, res) {
+    res.render('pages/categories');
 });
 
+// search page 
+app.get('/search', function(req, res) {
+    res.render('pages/search');
+});
+
+// import public folder
 app.use(express.static('public'))
 
 // listen for requests
-app.listen(2672, () => {
-    console.log("The NoteFarm App is running on Port 2672");
+app.listen(2609, () => {
+    console.log("The NoteFarm App is running on Port 2609");
 });

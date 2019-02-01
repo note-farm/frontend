@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <% include ../partials/header %>
+    <% include ../partials/navbar %>
+</head>
+
+<body>
+    <div class="container" style="padding-top:1rem">
+        <h1>Search</h1>
+        <p>Choose a category to search for notes</p>
+        <form>
+            <div class="form-group">
+                <select id="search-category-chooser" class="custom-select" name="category">
+                    <option selected="selected">blank</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-outline-primary" value="search" onclick="searchNotes(document.getElementById('search-category-chooser').value)">
+        </form>
+    </div>
+</body>
+
+<footer>
+    <% include ../partials/footer %>
+    <script src="./js/searchPage.js"></script>
+</footer>
+
+</html>
