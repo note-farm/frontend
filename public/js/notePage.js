@@ -1,5 +1,5 @@
 $.ajax({
-    url: 'http://localhost:2672/api/notes',
+    url: 'http://localhost:2609/api/notes',
     type: 'GET',
     success: function (myNotes) {
         console.log(myNotes)

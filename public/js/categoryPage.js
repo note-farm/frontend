@@ -1,5 +1,3 @@
-const axios = require('../../node_modules/axios/dist/axios')
-
 axios.get('http://localhost:2609/api/categories')
     .then(function (myCategories) {
         // EXTRACT VALUE FOR HTML HEADER. 
