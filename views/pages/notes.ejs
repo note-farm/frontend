@@ -13,28 +13,40 @@
     </script>
 
     <script>
-        function createNote(title, content, category) {
-            let url = 'http://localhost:2609/api/notes/create'
-            let info = {
-                title: title,
-                content: content,
-                category: category
+        function prepareCreateNote(categoryAndId, activateNote, title, content, category) {
+            console.log(categoryAndId);
+            let categoryId = categoryAndId.split('-')[1].trim();
+            console.log(categoryId)
+            if (title != null) {
+                createNote(title, content, category, categoryId)
+            } else {
+                console.log('createNote function will not be called')
             }
-            console.log(info)
-            var json = JSON.stringify(info);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            xhr.onload = function () {
-                var users = JSON.parse(xhr.responseText);
-                if (xhr.readyState == 4 && xhr.status == "200") {
-                    console.table(users);
-                } else {
-                    console.error(users);
+            function createNote(title, content, category, categoryId) {
+                let categoryWithoutId = category.split('-')[0].trim();
+                let url = 'http://localhost:2609/api/notes/create'
+                let info = {
+                    title: title,
+                    content: content,
+                    category: categoryWithoutId,
+                    categoryId: categoryId
                 }
+                console.log(info)
+                var json = JSON.stringify(info);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.onload = function () {
+                    var users = JSON.parse(xhr.responseText);
+                    if (xhr.readyState == 4 && xhr.status == "200") {
+                        console.table(users);
+                    } else {
+                        console.error(users);
+                    }
+                }
+                xhr.send(json);
             }
-            xhr.send(json);
         }
     </script>
 
@@ -59,14 +71,15 @@
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select id="category-chooser" class="custom-select" name="category">
+                            <select onchange="prepareCreateNote(document.getElementById('category-chooser').value, false)"
+                                id="category-chooser" class="custom-select" name="category">
                                 <option selected="selected">blank</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-outline-primary" value="Update" onclick="createNote(document.getElementById('note-title').value, document.getElementById('note-content').value, document.getElementById('category-chooser').value)">
+                        <input type="submit" class="btn btn-outline-primary" value="Create Note" onclick="prepareCreateNote(document.getElementById('category-chooser').value, true, document.getElementById('note-title').value, document.getElementById('note-content').value, document.getElementById('category-chooser').value)">
                     </div>
                 </div>
             </div>
@@ -74,13 +87,27 @@
     </form>
 
     <script>
-        function updateNote(noteData, newTitle, newContent, newCategory) {
+        function prepareUpdateNote(categoryAndId, activateNote, noteData, newtitle, newContent, newCategory) {
+            console.log(newTitle);
+            console.log(categoryAndId);
+            let categoryId = categoryAndId.split('-')[1].trim();
+            console.log(categoryId)
+            let category = categoryAndId.split('-')[0].trim();
+            console.log(category)
+            if (noteData != null) {
+                updateNote(noteData, newTitle, newContent, category, categoryId)
+            } else {
+                console.log('updateNote function will not be called')
+            }
+            function updateNote(noteData, newTitle, newContent, newCategory, newCategoryId) {
+                console.log(noteData);
             let noteId = noteData.split('-')[1].trim();
             let url = 'http://localhost:2609/api/notes/update/' + noteId
             let info = {
                 title: newTitle,
                 content: newContent,
-                category: newCategory
+                category: newCategory,
+                categoryId: newCategoryId
             }
             console.log(noteId)
             console.log(info)
@@ -98,6 +125,7 @@
                 }
             }
             xhr.send(json);
+        }
         }
     </script>
 
@@ -120,7 +148,7 @@
                         </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" id="newTitle" name="newTitle" class="form-control" placeholder="Enter a new name for your note">
+                            <input type="text" class="form-control" id="newTitle" name="newTitle" placeholder="Enter the new title for your note">
                         </div>
                         <div class="form-group">
                             <label>Content</label>
@@ -128,14 +156,14 @@
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select id="update-category-chooser" class="custom-select" name="note">
+                            <select onchange="prepareUpdateNote(document.getElementById('update-category-chooser').value, false)" id="update-category-chooser" class="custom-select" name="note">
                                 <option selected="selected">blank</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-outline-primary" value="Update" onclick="updateNote(document.getElementById('update-note-chooser').value, document.getElementById('newTitle').value, document.getElementById('newContent').value, document.getElementById('update-category-chooser').value)">
+                        <input type="submit" class="btn btn-outline-primary" value="Update" onclick="prepareUpdateNote(document.getElementById('update-category-chooser').value, true, document.getElementById('update-note-chooser').value, document.getElementById('newTitle').value, document.getElementById('newContent').value, document.getElementById('update-category-chooser').value)">
                     </div>
                 </div>
             </div>

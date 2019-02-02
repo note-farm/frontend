@@ -17,13 +17,15 @@ exports.create = (req, res) => {
     const note = new Note({
         title: req.body.title || "Untitled Note",
         content: req.body.content,
-        category: req.body.category
+        category: req.body.category,
+        categoryId: req.body.categoryId
     });
 
     // Save Note in the database
     note.save()
         .then(data => {
             res.send(data);
+            console.log('note created successfully');
         }).catch(err => {
             res.send({
                 message: err.message || "Some error occurred while creating the Note."
@@ -50,12 +52,18 @@ exports.update = (req, res) => {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
+    } if (!req.body.category) {
+        return res.status(400).send({
+            message: "Note category can not be empty"
+        })
     }
 
     // Find note and update it with the request body
     Note.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
-        content: req.body.content
+        content: req.body.content,
+        category: req.body.category,
+        categoryId: req.body.categoryId
     }, {new: true})
     .then(note => {
         if(!note) {
@@ -98,9 +106,9 @@ exports.delete = (req, res) => {
     });
 };
 
-// Find all notes under a specific category - NOT WORKING
+// Find all notes under a specific category
 exports.findNotes = (req, res) => {
-    Note.findById(req.params.categoryId)
+    Note.findById(req.params.category)
         .then(notes => {
             console.log(notes);
             res.send(notes);

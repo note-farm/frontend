@@ -59,9 +59,6 @@ app.get('/', function (req, res) {
 // notes page 
 app.get('/notes', function (req, res) {
     res.render('pages/notes', { title: 'Notes - Note Farm' });
-    Promise.resolve().then(function () {
-        throw new Error("BROKEN");
-    }).catch(next)
 });
 
 // categories page 
