@@ -1,9 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path')
+const morgan = require("morgan");
 
 // create express app
 const app = express();
+
+// set up morgan
+app.use(morgan('dev'));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -48,23 +52,26 @@ require('./server/app/routes/category.routes.js')(app);
 app.set('view engine', 'ejs');
 
 // home page 
-app.get('/', function(req, res) {
-    res.render('pages/home',{title: 'Home - Note Farm'});
+app.get('/', function (req, res) {
+    res.render('pages/home', { title: 'Home - Note Farm' });
 });
 
 // notes page 
-app.get('/notes', function(req, res) {
-    res.render('pages/notes',{title: 'Notes - Note Farm'});
+app.get('/notes', function (req, res) {
+    res.render('pages/notes', { title: 'Notes - Note Farm' });
+    Promise.resolve().then(function () {
+        throw new Error("BROKEN");
+    }).catch(next)
 });
 
 // categories page 
-app.get('/categories', function(req, res) {
-    res.render('pages/categories',{title: 'Categories - Note Farm'});
+app.get('/categories', function (req, res) {
+    res.render('pages/categories', { title: 'Categories - Note Farm' });
 });
 
 // search page 
-app.get('/search', function(req, res) {
-    res.render('pages/search',{title: 'Search - Note Farm'});
+app.get('/search', function (req, res) {
+    res.render('pages/search', { title: 'Search - Note Farm' });
 });
 
 // import public folder
