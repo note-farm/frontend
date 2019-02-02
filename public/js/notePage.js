@@ -58,7 +58,7 @@ axios.get('http://localhost:2609/api/notes')
         $('#note-chooser').empty();
         $('#note-chooser').append($('<option>').text("Choose a Note"));
         $.each(noteList.data, function (i, obj) {
-            $('#note-chooser').append($('<option>').text(obj.title));
+            $('#note-chooser').append($('<option>').text(obj.title + ' - ' + obj._id));
         });
     })
 
@@ -67,7 +67,7 @@ axios.get('http://localhost:2609/api/notes')
         $('#update-note-chooser').empty();
         $('#update-note-chooser').append($('<option>').text("Choose a Note"));
         $.each(noteList.data, function (i, obj) {
-            $('#update-note-chooser').append($('<option>').text(obj.title));
+            $('#update-note-chooser').append($('<option>').text(obj.title + ' - ' + obj._id));
         });
     })
 

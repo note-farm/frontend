@@ -45,7 +45,7 @@ axios.get('http://localhost:2609/api/categories')
         $('#delete-category-chooser').empty();
         $('#delete-category-chooser').append($('<option>').text("Choose a Category"));
         $.each(categoryList.data, function (i, obj) {
-            $('#delete-category-chooser').append($('<option>').text(obj.title));
+            $('#delete-category-chooser').append($('<option>').text(obj.title + ' - ' + obj._id));
         });
     })
 
@@ -54,6 +54,6 @@ axios.get('http://localhost:2609/api/categories')
         $('#update-category-chooser').empty();
         $('#update-category-chooser').append($('<option>').text("Choose a Category"));
         $.each(categoryList.data, function (i, obj) {
-            $('#update-category-chooser').append($('<option>').text(obj.title));
+            $('#update-category-chooser').append($('<option>').text(obj.title + ' - ' + obj._id));
         });
     })

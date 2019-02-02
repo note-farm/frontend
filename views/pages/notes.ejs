@@ -14,7 +14,7 @@
 
     <script>
         function createNote(title, content, category) {
-            let url = 'http://localhost:2609/api/notes'
+            let url = 'http://localhost:2609/api/notes/create'
             let info = {
                 title: title,
                 content: content,
@@ -74,14 +74,15 @@
     </form>
 
     <script>
-        function updateNote(title, newTitle, newContent, newCategory) {
-            let url = 'http://localhost:2609/api/notes/update'
+        function updateNote(noteData, newTitle, newContent, newCategory) {
+            let noteId = noteData.split('-')[1].trim();
+            let url = 'http://localhost:2609/api/notes/update/' + noteId
             let info = {
-                title: title,
-                newTitle: newTitle,
+                title: newTitle,
                 content: newContent,
                 category: newCategory
             }
+            console.log(noteId)
             console.log(info)
             var json = JSON.stringify(info);
 
@@ -142,13 +143,10 @@
     </form>
 
     <script>
-        function deleteNote(noteName) {
-            let url = 'http://localhost:2609/api/notes/delete'
-            let info = {
-                title: noteName
-            }
-            console.log(info)
-            var json = JSON.stringify(info);
+        function deleteNote(noteData) {
+            let noteId = noteData.split('-')[1].trim();
+            let url = 'http://localhost:2609/api/notes/delete/' + noteId
+            console.log(noteId);
 
             var xhr = new XMLHttpRequest();
             xhr.open("DELETE", url, true);
@@ -161,7 +159,7 @@
                     console.error(users);
                 }
             }
-            xhr.send(json);
+            xhr.send();
         }
     </script>
 

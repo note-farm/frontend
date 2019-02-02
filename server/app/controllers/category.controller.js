@@ -58,56 +58,46 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update a category identified by the categoryName in the request
+// Update a category identified by the categoryId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if (!req.body.title) {
-        return res.status(400).send({
-            message: "Category title can not be empty"
-        })
-    } if (!req.body.description) {
+    if(!req.body.description) {
         return res.status(400).send({
             message: "Category description can not be empty"
-        });
-    } if (!req.body.newTitle) {
-        return res.status(400).send({
-            message: "The new title for the category can not be empty"
         });
     }
 
     // Find category and update it with the request body
-    Category.findOneAndUpdate(req.body.title, {
-        title: req.body.newTitle || req.body.title,
+    Category.findByIdAndUpdate(req.params.categoryId, {
+        title: req.body.title || "Untitled Category",
         description: req.body.description
-    }, { new: true })
-        .then(category => {
-            if (!category) {
-                console.error('category not found')
-                return res.status(404).send({
-                    message: "category not found with title " + req.body.title
-                });
-            }
-            res.send(category);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                console.error(err)
-                return res.status(404).send({
-                    message: "category not found with title " + req.body.title
-                });
-            }
-            return res.status(500).send({
-                message: "Error updating category with title " + req.body.title
+    }, {new: true})
+    .then(category => {
+        if(!category) {
+            return res.status(404).send({
+                message: "Category not found with id " + req.params.categoryId
             });
+        }
+        res.send(category);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Category not found with id " + req.params.categoryId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error updating categor with id " + req.params.categoryId
         });
+    });
 };
 
 // Delete a category with the specified categoryId in the request
 exports.delete = (req, res) => {
-    Category.findOneAndDelete(req.body.title)
+    Category.findByIdAndDelete(req.params.categoryId)
         .then(category => {
             if (!category) {
                 return res.status(404).send({
-                    message: "category not found with id " + req.body.title
+                    message: "category not found with id " + req.body.categoryId
                 });
             }
             res.send({ message: "category deleted successfully!" });
@@ -115,11 +105,11 @@ exports.delete = (req, res) => {
             console.log(err)
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "category not found with id " + req.body.title
+                    message: "category not found with id " + req.body.categoryId
                 });
             }
             return res.status(500).send({
-                message: "Could not delete category with id " + req.body.title
+                message: "Could not delete category with id " + req.body.categoryId
             });
         });
 };
