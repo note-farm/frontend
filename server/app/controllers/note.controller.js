@@ -91,7 +91,7 @@ exports.update = (req, res) => {
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Note.findOneAndDelete(req.body.title)
+    Note.findOneAndRemove(req.body.title)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
@@ -111,9 +111,9 @@ exports.delete = (req, res) => {
         });
 };
 
-// Find all notes under a specific category
+// Find all notes under a specific category - NOT WORKING
 exports.findNotes = (req, res) => {
-    Note.findAll(req.params.category)
+    Note.findById(req.params.categoryId)
         .then(notes => {
             console.log(notes);
             res.send(notes);

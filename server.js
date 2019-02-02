@@ -49,22 +49,22 @@ app.set('view engine', 'ejs');
 
 // home page 
 app.get('/', function(req, res) {
-    res.render('pages/home');
+    res.render('pages/home',{title: 'Home - Note Farm'});
 });
 
 // notes page 
 app.get('/notes', function(req, res) {
-    res.render('pages/notes');
+    res.render('pages/notes',{title: 'Notes - Note Farm'});
 });
 
 // categories page 
 app.get('/categories', function(req, res) {
-    res.render('pages/categories');
+    res.render('pages/categories',{title: 'Categories - Note Farm'});
 });
 
 // search page 
 app.get('/search', function(req, res) {
-    res.render('pages/search');
+    res.render('pages/search',{title: 'Search - Note Farm'});
 });
 
 // import public folder

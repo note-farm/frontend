@@ -7,16 +7,6 @@ axios.get('http://localhost:2609/api/categories')
         });
     })
 
-function searchNotes(categorySelected) {
-    axios.get('http://localhost:2609/api/categories')
-        .then(function (catList) {
-            console.log(catList.data);
-            let json = catList.data
-            json.forEach(entry => {
-                if (entry.title === categorySelected) {
-                    return entry["_id"];
-                }
-                console.log('operation completed?')
-            });
-        });
+function searchNotes(category) {
+
 }
